@@ -6,7 +6,7 @@ using namespace std;
 
 int32_t main() {
     Triangle t({ 0, 0 }, { 5, 0 }, { 0, 5 });
-    vector<Point> points = { {0,3},{1,4},{1,5},{9,2} };
+    vector<Point> points = { {3,1},{4,1},{5,9} };
 
     for (auto& p : points) {
         p.display();
@@ -19,11 +19,13 @@ int32_t main() {
         cout << endl;
     }
 
+    points[0].display();
     if (t.otherContains(points[0]))
         cout << "Oh yes, it's in there tight~" << endl;
     else 
         cout << "Nah bro, it’s not getting in" << endl;
 
+    cout << endl;
     if (t.isDegenerate())
         cout << "Flat is justice! Lolis for the win" << endl;
     else
