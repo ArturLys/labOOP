@@ -5,15 +5,28 @@ template <typename T, size_t N> int SIZE(const T(&t)[N]) { return N; } template<
 using namespace std;
 
 int32_t main() {
-    Triangle t = { {0, 0}, {5, 0}, {2, 5} };
-    Point p = { 0, 0 };
+    Triangle t({ 0, 0 }, { 5, 0 }, { 0, 5 });
+    vector<Point> points = { {0,3},{1,4},{1,5},{9,2} };
 
-    cout << t.isDegenerate();
+    for (auto& p : points) {
+        p.display();
+        if (t.isEdging(p))
+            cout << "Mmm, I'm on the edge... just a little more, daddy..." << endl;
+        else if (t.contains(p))
+            cout << "Mmm, yeah... all the way in~" << endl;
+        else 
+            cout << "No daddy, it's too big to fit" << endl;
+        cout << endl;
+    }
 
-    if (t.contains(p)) {
-        cout << "yes is in the triangle is inside yes yes, shkibidi dob" << endl;
-    }
-    else {
-        cout << "No daddy, it's not inside" << endl;
-    }
+    if (t.otherContains(points[0]))
+        cout << "Oh yes, it's in there tight~" << endl;
+    else 
+        cout << "Nah bro, it’s not getting in" << endl;
+
+    if (t.isDegenerate())
+        cout << "Flat is justice! Lolis for the win" << endl;
+    else
+        cout << "I mean, it's a nice triangle and all, but... where's the charm?" << endl;
+
 }

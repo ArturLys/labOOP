@@ -1,5 +1,10 @@
 #include "Triangle.h"
 
+void Point::display() const {
+    cout << "(" << this->x << ", " << this->y << ")\n";
+}
+
+
 double distance(const Point& p1, const Point& p2) {
     return sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
 }
@@ -27,6 +32,21 @@ bool Triangle::contains(const Point& P) const {
     return fabs(S_main - S_sum) < 1e-9;
 }
 
+bool Triangle::isEdging(const Point& P) const {
+    double C1 = (B.x - A.x) * (P.y - A.y) - (B.y - A.y) * (P.x - A.x);
+    double C2 = (C.x - B.x) * (P.y - B.y) - (C.y - B.y) * (P.x - B.x);
+    double C3 = (A.x - C.x) * (P.y - C.y) - (A.y - C.y) * (P.x - C.x);
+    return fabs(C1) < 1e-9 || fabs(C2) < 1e-9 || fabs(C3) < 1e-9;
+}
+
+bool Triangle::otherContains(const Point& P) const {
+
+    double C1 = (B.x - A.x) * (P.y - A.y) - (B.y - A.y) * (P.x - A.x);
+    double C2 = (C.x - B.x) * (P.y - B.y) - (C.y - B.y) * (P.x - B.x);
+    double C3 = (A.x - C.x) * (P.y - C.y) - (A.y - C.y) * (P.x - C.x);
+    return !((signbit(C1)^signbit(C2))|(signbit(C2)^signbit(C3)));
+}
+
 bool Triangle::isDegenerate() const {
-    return heronArea(*this);
+    return fabs(area()) < 1e-9;
 }
