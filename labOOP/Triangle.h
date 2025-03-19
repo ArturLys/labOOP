@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream> 
 #include <cmath>
+#include <vector>
+using namespace std;
 
 struct Point {
     double x, y;
