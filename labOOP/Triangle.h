@@ -1,5 +1,6 @@
 #pragma once
-#include "template.h"
+#include <iostream> 
+#include <cmath>
 
 struct Point {
     double x, y;
