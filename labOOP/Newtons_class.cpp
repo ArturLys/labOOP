@@ -7,17 +7,6 @@ using namespace std;
 Newtons_class::Newtons_class() {}
 Newtons_class::~Newtons_class() {}
 
-double Newtons_class::F(double x) {
-	double tan_x = tan(x);
-	return tan_x - (pow(tan_x, 3) + 1) / 3 + 0.2 * pow(tan_x, 5);
-}
-
-double Newtons_class::F_(double x) {
-	double tan_x = tan(x);
-	double sec2_x = (1.0 / cos(x)) * (1.0 / cos(x));
-	return sec2_x - 3 * pow(tan_x, 2) * sec2_x + 1.0 * 1.0 * 5 * pow(tan_x, 4) * sec2_x;
-}
-
 void Newtons_class::setTolerance(double vol_eps) {
 	eps = vol_eps;
 }
@@ -28,6 +17,19 @@ void Newtons_class::setVolumes(double vol_a, double vol_b) {
 }
 
 int Newtons_class::count(double& x) {
+
+    auto F = [](double x) {
+        double tan_x = tan(x);
+        return tan_x - (pow(tan_x, 3) + 1) / 3 + 0.2 * pow(tan_x, 5);
+    };
+
+    auto F_ = [](double x) {
+        double tan_x = tan(x);
+        double sec2_x = 1.0 / pow(cos(x), 2);
+        return sec2_x - 3 * pow(tan_x, 2) * sec2_x + 5 * pow(tan_x, 4) * sec2_x;
+    };
+
+
     if (F(x) == 0) {
         return 0;
     }

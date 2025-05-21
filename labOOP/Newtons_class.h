@@ -10,9 +10,6 @@ public:
 	void setVolumes(double vol_a, double vol_b);
 	void setTolerance(double vol_eps);
 
-	double F(double x);
-	double F_(double x);
-
 	int count(double& x);
 
 private:
