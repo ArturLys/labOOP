@@ -23,11 +23,10 @@ int Newtons_class::count(double& x) {
         return tan_x - (pow(tan_x, 3) + 1) / 3 + 0.2 * pow(tan_x, 5);
     };
 
-    auto F_ = [](double x) {
-        double tan_x = tan(x);
-        double sec2_x = 1.0 / pow(cos(x), 2);
-        return sec2_x - 3 * pow(tan_x, 2) * sec2_x + 5 * pow(tan_x, 4) * sec2_x;
+    auto F_ = [F](double x, double lim = 1e-5) {
+        return (F(x + lim) - F(x)) / lim;
     };
+
 
 
     if (F(x) == 0) {
