@@ -3,7 +3,6 @@
 #include <memory>
 using namespace std;
 
-// Base class
 class Loli {
     string name;
     int age;
