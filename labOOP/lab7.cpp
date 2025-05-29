@@ -37,7 +37,7 @@ private:
     LoliAccessManager() {}
 public:
     static LoliAccessManager& getInstance() {
-        if (!instance) instance = make_unique<LoliAccessManager>();
+        if (!instance) instance = make_unique<LoliAccessManager>(new LoliAccessManager());
         return *instance;
     }
 
